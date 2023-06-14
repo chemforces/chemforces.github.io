@@ -1,2 +1,2 @@
 hello this is website
-<img src="./untitled.png">
+![image info](./untitled.png)
