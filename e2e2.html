@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citizenship Matters | Awareness & Action</title>
+    <style>
+        /* Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #1a237e;
+            color: white;
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 20px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .nav-links a:hover {
+            color: #ff9800;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 80vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #ff9800;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin: 5px;
+        }
+        
+        .btn:hover {
+            background-color: #f57c00;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            border: 2px solid #ff9800;
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(255, 152, 0, 0.2);
+        }
+        
+        /* Sections */
+        section {
+            padding: 70px 0;
+        }
+        
+        section h2 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* Topic Cards Section */
+        .topics-section {
+            background-color: white;
+        }
+        
+        .section-title.topics:after {
+            background-color: #ff9800;
+        }
+        
+        .topics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .topic-card {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .topic-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .topic-image {
+            height: 200px;
+            position: relative;
+        }
+        
+        .topic-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .topic-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .freedom-speech .topic-overlay {
+            background: linear-gradient(rgba(25, 118, 210, 0.8), rgba(25, 118, 210, 0.4));
+        }
+        
+        .digital-privacy .topic-overlay {
+            background: linear-gradient(rgba(76, 175, 80, 0.8), rgba(76, 175, 80, 0.4));
+        }
+        
+        .human-rights .topic-overlay {
+            background: linear-gradient(rgba(244, 67, 54, 0.8), rgba(244, 67, 54, 0.4));
+        }
+        
+        .gender-equality .topic-overlay {
+            background: linear-gradient(rgba(156, 39, 176, 0.8), rgba(156, 39, 176, 0.4));
+        }
+        
+        .democracy .topic-overlay {
+            background: linear-gradient(rgba(255, 152, 0, 0.8), rgba(255, 152, 0, 0.4));
+        }
+        
+        .topic-content {
+            padding: 25px;
+        }
+        
+        .topic-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .topic-content p {
+            margin-bottom: 15px;
+        }
+        
+        .topic-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        /* Freedom of Speech Section */
+        .freedom-section {
+            background-color: #e3f2fd;
+        }
+        
+        .section-title.freedom:after {
+            background-color: #1976d2;
+        }
+        
+        /* Digital Privacy Section */
+        .privacy-section {
+            background-color: #e8f5e9;
+        }
+        
+        .section-title.privacy:after {
+            background-color: #4caf50;
+        }
+        
+        /* Human Rights Section */
+        .rights-section {
+            background-color: #ffebee;
+        }
+        
+        .section-title.rights:after {
+            background-color: #f44336;
+        }
+        
+        /* Gender Equality Section */
+        .equality-section {
+            background-color: #f3e5f5;
+        }
+        
+        .section-title.equality:after {
+            background-color: #9c27b0;
+        }
+        
+        /* Democracy Section */
+        .democracy-section {
+            background-color: #fff3e0;
+        }
+        
+        .section-title.democracy:after {
+            background-color: #ff9800;
+        }
+        
+        /* Content Layout for Topic Sections */
+        .topic-content-grid {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .topic-text {
+            flex: 1.2;
+        }
+        
+        .topic-image-container {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .topic-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .facts-box {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .facts-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #333;
+        }
+        
+        .facts-list {
+            list-style: none;
+        }
+        
+        .facts-list li {
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .facts-list li:before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #ff9800;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .challenge-box {
+            background-color: rgba(0, 0, 0, 0.05);
+            border-radius: 10px;
+            padding: 25px;
+            margin-top: 30px;
+        }
+        
+        .challenge-box h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+        
+        /* Get Involved Section */
+        .involved-section {
+            background-color: #1a237e;
+            color: white;
+            text-align: center;
+        }
+        
+        .section-title.involved:after {
+            background-color: #ff9800;
+        }
+        
+        .involved-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .involved-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s;
+        }
+        
+        .involved-card:hover {
+            transform: translateY(-10px);
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .involved-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff9800;
+        }
+        
+        .involved-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+        
+        /* Personal Experience Section */
+        .experience-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('/api/placeholder/1200/600');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+        }
+        
+        .experience-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .quote {
+            font-size: 1.4rem;
+            font-style: italic;
+            margin: 30px 0;
+            line-height: 1.8;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #0e1442;
+            color: white;
+            padding: 60px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: #ff9800;
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: #ff9800;
+        }
+        
+        .contact-info p {
+            margin-bottom: 10px;
+            color: #ccc;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            color: #ccc;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #ff9800;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #999;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .topic-content-grid {
+                flex-direction: column;
+            }
+            
+            .topic-image-container {
+                order: -1;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">Citizenship Matters</div>
+                <ul class="nav-links">
+                    <li><a href="#topics">Key Topics</a></li>
+                    <li><a href="#freedom">Freedom of Speech</a></li>
+                    <li><a href="#privacy">Digital Privacy</a></li>
+                    <li><a href="#rights">Human Rights</a></li>
+                    <li><a href="#equality">Gender Equality</a></li>
+                    <li><a href="#democracy">Democracy</a></li>
+                    <li><a href="#involved">Get Involved</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Active Citizenship in the Digital Age</h1>
+                <p>Understanding and exercising your rights and responsibilities is essential for a thriving democracy.</p>
+                <div>
+                    <a href="#topics" class="btn">Explore Issues</a>
+                    <a href="#involved" class="btn btn-secondary">Take Action</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Topics Overview Section -->
+    <section id="topics" class="topics-section">
+        <div class="container">
+            <h2><span class="section-title topics">Key Citizenship Issues</span></h2>
+            <div class="topics-grid">
+                <div class="topic-card freedom-speech">
+                    <div class="topic-image">
+                        <img src="/api/placeholder/400/300" alt="Freedom of Speech">
+                        <div class="topic-overlay"></div>
+                        <div class="topic-icon">🗣️</div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Freedom of Speech</h3>
+                        <p>The right to express opinions without fear of censorship or retaliation is fundamental to democracy.</p>
+                        <a href="#freedom" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card digital-privacy">
+                    <div class="topic-image">
+                        <img src="/api/placeholder/400/300" alt="Digital Privacy">
+                        <div class="topic-overlay"></div>
+                        <div class="topic-icon">🔒</div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Digital Privacy</h3>
+                        <p>Protection of personal information in an increasingly connected and data-driven world.</p>
+                        <a href="#privacy" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card human-rights">
+                    <div class="topic-image">
+                        <img src="/api/placeholder/400/300" alt="Human Rights">
+                        <div class="topic-overlay"></div>
+                        <div class="topic-icon">⚖️</div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Human Rights</h3>
+                        <p>The basic rights and freedoms that belong to every person regardless of nationality, sex, or other status.</p>
+                        <a href="#rights" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card gender-equality">
+                    <div class="topic-image">
+                        <img src="/api/placeholder/400/300" alt="Gender Equality">
+                        <div class="topic-overlay"></div>
+                        <div class="topic-icon">⚧</div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Gender Equality</h3>
+                        <p>Equal rights, responsibilities, and opportunities for people of all genders in society.</p>
+                        <a href="#equality" class="btn">Learn More</a>
+                    </div>
+                </div>
+                
+                <div class="topic-card democracy">
+                    <div class="topic-image">
+                        <img src="/api/placeholder/400/300" alt="Democratic Participation">
+                        <div class="topic-overlay"></div>
+                        <div class="topic-icon">🗳️</div>
+                    </div>
+                    <div class="topic-content">
+                        <h3>Democratic Participation</h3>
+                        <p>Active involvement in democratic processes like voting, civic engagement, and community advocacy.</p>
+                        <a href="#democracy" class="btn">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Freedom of Speech Section -->
+    <section id="freedom" class="freedom-section">
+        <div class="container">
+            <h2><span class="section-title freedom">Freedom of Speech</span></h2>
+            <div class="topic-content-grid">
+                <div class="topic-text">
+                    <p>Freedom of speech is the right to express opinions and ideas without fear of censorship, retaliation, or legal sanction. It is one of the most fundamental rights in a democratic society and is essential for personal liberty, societal progress, and the free exchange of ideas.</p>
+                    <p>This right enables citizens to criticize the government, discuss controversial topics, and contribute to public discourse. However, freedom of speech also comes with responsibilities and certain limitations, such as restrictions on speech that incites violence or causes harm.</p>
+                    
+                    <div class="facts-box">
+                        <h4>Key Facts:</h4>
+                        <ul class="facts-list">
+                            <li>Freedom of speech is protected by the First Amendment in the United States and by Article 19 of the Universal Declaration of Human Rights internationally.</li>
+                            <li>According to Freedom House, global freedom of expression has declined for the past 17 consecutive years.</li>
+                            <li>Digital platforms have created new challenges and opportunities for free expression.</li>
+                            <li>Many journalists worldwide face threats, imprisonment, or violence for exercising this right.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="challenge-box">
+                        <h4>Current Challenges:</h4>
+                        <p>Today, freedom of speech faces challenges from both government censorship and private platform content moderation. The rise of misinformation, hate speech, and digital surveillance has complicated discussions about appropriate limits. Finding the balance between free expression and preventing harm remains an ongoing societal challenge.</p>
+                    </div>
+                </div>
+                <div class="topic-image-container">
+                    <img src="/api/placeholder/500/400" alt="Freedom of Speech Representation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Privacy Section -->
+    <section id="privacy" class="privacy-section">
+        <div class="container">
+            <h2><span class="section-title privacy">Digital Privacy</span></h2>
+            <div class="topic-content-grid">
+                <div class="topic-text">
+                    <p>Digital privacy refers to the protection of personal information that is collected, stored, and shared in digital formats. It encompasses the right to control who has access to your data and how it's used.</p>
+                    <p>In our increasingly connected world, vast amounts of personal data are collected through websites, apps, and smart devices. While this enables many convenient services, it also raises significant concerns about surveillance, data breaches, and the commodification of personal information.</p>
+                    
+                    <div class="facts-box">
+                        <h4>Key Facts:</h4>
+                        <ul class="facts-list">
+                            <li>The average person's data is shared with over 2,000 different companies.</li>
+                            <li>Major data breaches have exposed billions of personal records in recent years.</li>
+                            <li>Many countries have enacted privacy laws like GDPR in Europe and CCPA in California.</li>
+                            <li>Privacy concerns extend beyond individual rights to societal impacts including algorithmic discrimination and political manipulation.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="challenge-box">
+                        <h4>Current Challenges:</h4>
+                        <p>Digital privacy faces challenges from both government surveillance programs and corporate data collection practices. Many people lack understanding of privacy risks or how to protect themselves online. Additionally, the global nature of digital communications creates jurisdictional issues in privacy enforcement.</p>
+                    </div>
+                </div>
+                <div class="topic-image-container">
+                    <img src="/api/placeholder/500/400" alt="Digital Privacy Illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Human Rights Section -->
+    <section id="rights" class="rights-section">
+        <div class="container">
+            <h2><span class="section-title rights">Human Rights</span></h2>
+            <div class="topic-content-grid">
+                <div class="topic-text">
+                    <p>Human rights are the basic rights and freedoms that belong to every person in the world, from birth until death. They apply regardless of where you are from, what you believe, or how you choose to live your life.</p>
+                    <p>These rights are based on shared values like dignity, fairness, equality, respect, and independence. Human rights include civil and political rights like the right to life, liberty, and freedom of expression; and social, cultural and economic rights like the right to education, health, and work.</p>
+                    
+                    <div class="facts-box">
+                        <h4>Key Facts:</h4>
+                        <ul class="facts-list">
+                            <li>The Universal Declaration of Human Rights was adopted by the UN in 1948 and outlines 30 fundamental rights.</li>
+                            <li>Human rights violations continue to occur in many forms worldwide, including torture, arbitrary detention, and discrimination.</li>
+                            <li>Nearly 25 million people are trapped in forced labor globally.</li>
+                            <li>Access to clean water, recognized as a human right in 2010, is still unavailable to over 2 billion people.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="challenge-box">
+                        <h4>Current Challenges:</h4>
+                        <p>Human rights face challenges from armed conflicts, authoritarian governments, and economic inequality. Climate change threatens the right to health, food, and water. Additionally, human rights organizations often face restrictions or threats when attempting to document abuses or advocate for victims.</p>
+                    </div>
+                </div>
+                <div class="topic-image-container">
+                    <img src="/api/placeholder/500/400" alt="Human Rights Representation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gender Equality Section -->
+    <section id="equality" class="equality-section">
+        <div class="container">
+            <h2><span class="section-title equality">Gender Equality</span></h2>
+            <div class="topic-content-grid">
+                <div class="topic-text">
+                    <p>Gender equality is the state in which access to rights and opportunities is unaffected by gender. It involves equal enjoyment of human rights, socially valued goods, resources, and rewards by people of all genders.</p>
+                    <p>While significant progress has been made in many countries, gender inequality persists globally in various forms, including wage gaps, underrepresentation in leadership positions, discriminatory laws, and gender-based violence.</p>
+                    
+                    <div class="facts-box">
+                        <h4>Key Facts:</h4>
+                        <ul class="facts-list">
+                            <li>Women perform approximately 2.5 times more unpaid care and domestic work than men globally.</li>
+                            <li>Globally, women hold only about 26% of parliamentary seats.</li>
+                            <li>The gender pay gap averages around 20% globally, with significant variation by country and sector.</li>
+                            <li>Nearly 1 in 3 women worldwide have experienced physical or sexual violence in their lifetime.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="challenge-box">
+                        <h4>Current Challenges:</h4>
+                        <p>Gender equality faces challenges from deeply rooted social norms, discriminatory laws and practices, and lack of economic opportunities. Additionally, the COVID-19 pandemic reversed some progress as women were disproportionately affected by job losses and increased caregiving responsibilities.</p>
+                    </div>
+                </div>
+                <div class="topic-image-container">
+                    <img src="/api/placeholder/500/400" alt="Gender Equality Illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Democratic Participation Section -->
+    <section id="democracy" class="democracy-section">
+        <div class="container">
+            <h2><span class="section-title democracy">Democratic Participation</span></h2>
+            <div class="topic-content-grid">
+                <div class="topic-text">
+                    <p>Democratic participation encompasses the ways citizens engage in political processes and civic life. This includes voting in elections, running for office, contacting elected officials, participating in community organizations, and advocating for policy changes.</p>
+                    <p>Active citizen participation is essential for responsive and accountable governance. When citizens are engaged, governments are more likely to implement policies that reflect the needs and priorities of the people they serve.</p>
+                    
+                    <div class="facts-box">
+                        <h4>Key Facts:</h4>
+                        <ul class="facts-list">
+                            <li>Voter turnout has been declining in many established democracies over the past several decades.</li>
+                            <li>According to the Democracy Index, only about 8% of the world's population lives in a "full democracy."</li>
+                            <li>Digital technologies have created new forms of civic engagement, including online petitions and social media advocacy.</li>
+                            <li>Young people (18-29) consistently have lower voting rates than older age groups in most democracies.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="challenge-box">
+                        <h4>Current Challenges:</h4>
+                        <p>Democratic participation faces challenges from voter suppression, political polarization, and declining trust in institutions. Additionally, unequal access to political resources and information creates barriers to meaningful participation for marginalized communities.</p>
+                    </div>
+                </div>
+                <div class="topic-image-container">
+                    <img src="/api/placeholder/500/400" alt="Democratic Participation Illustration">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Personal Experience Section -->
+    <section class="experience-section">
+        <div class="container">
+            <h2><span class="section-title">My Citizenship Journey</span></h2>
+            <div class="experience-content">
+                <p>My interest in citizenship issues began during my high school years when I participated in a community service project addressing local environmental concerns. Through this experience, I learned how citizen action can create meaningful change at the local level.</p>
+                <p class="quote">"The health of a democratic society may be measured by the quality of functions performed by private citizens." - Alexis de Tocqueville</p>
+                <p>Since then, I've been particularly concerned with how digital technologies are reshaping citizenship – creating both new opportunities for civic engagement and new challenges to rights like privacy and free expression. This website represents my effort to share what I've learned and encourage others to become more informed and engaged citizens.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section id="involved" class="involved-section">
+        <div class="container">
+            <h2><span class="section-title involved">Get Involved</span></h2>
+            <p>Making a difference starts with individual action. Here are some ways you can become an active citizen and advocate for a more just society:</p>
+            
+            <div class="involved-grid">
+                <div class="involved-card">
+                    <div class="involved-icon">🗳️</div>
+                    <h3>Vote & Engage</h3>
+                    <p>Register to vote and participate in all elections. Contact your elected representatives about issues that matter to you. Attend town halls and community meetings.</p>
+                </div>
+                
+                <div class="involved-card">
+                    <div class="involved-icon">📚</div>
+                    <h3>Educate Yourself</h3>
+                    <p>Stay informed about current events through diverse and reliable sources. Research the history and context of social issues. Share accurate information with others.</p>
+                </div>
+                
+                <div class="involved-card">
+                    <div class="involved-icon">🤝</div>
+                    <h3>Volunteer & Donate</h3>
+                    <p>Support organizations working on citizenship issues. Volunteer your time and skills for causes you care about. Contribute financially if you're able.</p>
+                </div>
+                
+                <div class="involved-card">
+                    <div class="involved-icon">📣</div>
+                    <h3>Speak Up</h3>
+                    <p>Use your voice to advocate for positive change. Participate in peaceful protests. Create or sign petitions.
